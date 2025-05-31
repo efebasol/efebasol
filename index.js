@@ -1,8 +1,15 @@
 import axios from 'axios';
 import WebSocket from 'ws';
 import dotenv from 'dotenv';
+import http from 'http';
 
 dotenv.config();
+
+// Dummy HTTP server to keep Railway happy
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end("Kick Bot running!");
+}).listen(process.env.PORT || 3000);
 
 const username = process.env.USERNAME;
 const oauthToken = process.env.OAUTH_TOKEN;
