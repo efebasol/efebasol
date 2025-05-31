@@ -25,9 +25,18 @@ export default async function handler(req, res) {
     );
 
     const tokenData = tokenResponse.data;
-    console.log('Access Token:', tokenData.access_token);
+    
+    // 🔥 İşte burası helper kısım:
+    console.log('✅ Access Token:', tokenData.access_token);
+    console.log('✅ Refresh Token:', tokenData.refresh_token);
+    console.log('✅ Expires in:', tokenData.expires_in);
 
-    res.status(200).json(tokenData);
+    res.status(200).send(`
+      ✅ Access Token: ${tokenData.access_token} <br/>
+      ✅ Refresh Token: ${tokenData.refresh_token} <br/>
+      ✅ Expires in: ${tokenData.expires_in} seconds
+    `);
+    
   } catch (err) {
     console.error(err.response?.data || err);
     res.status(500).send("Token exchange failed");
