@@ -8,7 +8,12 @@ const username = process.env.USERNAME;
 const oauthToken = process.env.OAUTH_TOKEN;
 
 async function getChannelId(username) {
-  const response = await axios.get(`https://kick.com/api/v2/users/${username}`);
+  const response = await axios.get(`https://kick.com/api/v2/users/${username}`, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Kick Bot)',
+      'Accept': 'application/json'
+    }
+  });
   return response.data.id;
 }
 
