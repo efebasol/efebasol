@@ -16,7 +16,6 @@ export async function handler(req, res) {
     return;
   }
 
-  // asdf
   try {
     const tokenResponse = await axios.post(
       'https://kick.com/oauth/token',
